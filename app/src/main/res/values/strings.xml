@@ -43,4 +43,10 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="add_new_student">Add New Student</string>
+    <string name="name_field">Name:</string>
+    <string name="id_field">ID:</string>
+    <string name="checked_field">Checked</string>
+    <string name="student_image">Student Image</string>
+    <string name="add_student_button">Add student button</string>
 </resources>
