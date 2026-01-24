@@ -1,4 +1,4 @@
-package com.example.studentsapp.features
+package com.example.studentsapp.features.student_details
 
 import android.annotation.SuppressLint
 import android.os.Bundle

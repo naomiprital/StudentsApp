@@ -12,12 +12,12 @@
         android:theme="@style/Theme.StudentsApp">
 
         <activity
-            android:name=".features.StudentDetailsActivity"
+            android:name=".features.student_details.StudentDetailsActivity"
             android:exported="false"
             android:label="Student Details" />
 
         <activity
-            android:name=".features.StudentListActivity"
+            android:name=".features.students_list.StudentListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

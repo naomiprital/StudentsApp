@@ -1,4 +1,4 @@
-package com.example.studentsapp.features
+package com.example.studentsapp.features.students_list
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studentsapp.R
+import com.example.studentsapp.features.student_details.StudentDetailsActivity
 import com.example.studentsapp.models.StudentModel
 
 class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
