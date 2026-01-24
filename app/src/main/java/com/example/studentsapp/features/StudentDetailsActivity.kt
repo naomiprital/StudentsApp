@@ -27,6 +27,8 @@ class StudentDetailsActivity : AppCompatActivity() {
 
             findViewById<TextView>(R.id.details_name_tv).text = "Name: ${student.name}"
             findViewById<TextView>(R.id.details_id_tv).text = "ID: ${student.id}"
+            findViewById<TextView>(R.id.details_phone_tv).text = "Phone: ${student.phone}"
+            findViewById<TextView>(R.id.details_address_tv).text = "Address: ${student.address}"
 
             val checkBox = findViewById<CheckBox>(R.id.details_check)
             checkBox.isChecked = student.isChecked

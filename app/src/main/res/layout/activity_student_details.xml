@@ -37,6 +37,22 @@
             android:text="@string/id_field"
             android:layout_marginBottom="16dp" />
 
+        <TextView
+            android:id="@+id/details_phone_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@string/id_field"
+            android:layout_marginBottom="16dp"  />
+
+        <TextView
+            android:id="@+id/details_address_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@string/id_field"
+            android:layout_marginBottom="16dp"  />
+
         <CheckBox
             android:id="@+id/details_check"
             android:layout_width="match_parent"
