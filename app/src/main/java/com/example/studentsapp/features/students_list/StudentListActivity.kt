@@ -1,11 +1,14 @@
 package com.example.studentsapp.features.students_list
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.studentsapp.R
+import com.example.studentsapp.features.add_student.AddStudentActivity
+import com.example.studentsapp.features.student_details.StudentDetailsActivity
 import com.example.studentsapp.features.students_list.StudentAdapter
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -27,7 +30,8 @@ class StudentListActivity : AppCompatActivity() {
 
         val addBtn: FloatingActionButton = findViewById(R.id.student_list_add_btn)
         addBtn.setOnClickListener {
-            Toast.makeText(this, "TODO: Add student logic", Toast.LENGTH_SHORT).show()
+            var intent = Intent(this, AddStudentActivity::class.java)
+            it.context.startActivity(intent)
         }
     }
 }

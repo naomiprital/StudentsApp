@@ -49,4 +49,6 @@
     <string name="checked_field">Checked</string>
     <string name="student_image">Student Image</string>
     <string name="add_student_button">Add student button</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 </resources>
