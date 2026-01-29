@@ -2,6 +2,7 @@ package com.example.studentsapp.features.student_details
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -33,6 +34,11 @@ class StudentDetailsActivity : AppCompatActivity() {
             val checkBox = findViewById<CheckBox>(R.id.details_check)
             checkBox.isChecked = student.isChecked
             checkBox.text = if (student.isChecked) "Checked" else "Not Checked"
+
+            findViewById<Button>(R.id.delete_student_button).setOnClickListener {
+                StudentModel.students.removeAt(position)
+                finish()
+            }
         }
     }
 

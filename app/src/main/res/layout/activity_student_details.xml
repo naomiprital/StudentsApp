@@ -60,5 +60,12 @@
             android:text="@string/checked_field"
             android:clickable="false" />
 
+        <Button
+            android:id="@+id/delete_student_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_student"
+            android:backgroundTint="@color/delete_red" />
+
     </LinearLayout>
 </LinearLayout>

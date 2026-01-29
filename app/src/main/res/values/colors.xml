@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="brand_primary">#4BA1BC</color>
+    <color name="delete_red">#bc4b4b</color>
     <color name="button_bg">#D3D3D3</color>
     <color name="button_text">#212121</color>
 </resources>

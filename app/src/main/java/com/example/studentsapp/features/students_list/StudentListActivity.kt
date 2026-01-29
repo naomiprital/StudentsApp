@@ -1,5 +1,6 @@
 package com.example.studentsapp.features.students_list
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,8 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class StudentListActivity : AppCompatActivity() {
+    private lateinit var adapter: StudentAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_student_list)
@@ -22,13 +25,19 @@ class StudentListActivity : AppCompatActivity() {
         val rv: RecyclerView = findViewById(R.id.student_list_rv)
         rv.layoutManager = LinearLayoutManager(this)
 
-        val adapter = StudentAdapter()
+        adapter = StudentAdapter()
         rv.adapter = adapter
 
         val addBtn: FloatingActionButton = findViewById(R.id.student_list_add_btn)
         addBtn.setOnClickListener {
             val intent = Intent(this, AddStudentActivity::class.java)
-            it.context.startActivity(intent)
+            startActivity(intent)
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
     }
 }
