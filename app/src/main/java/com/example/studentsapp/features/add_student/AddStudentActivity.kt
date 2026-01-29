@@ -2,7 +2,6 @@ package com.example.studentsapp.features.add_student
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
@@ -33,15 +32,12 @@ class AddStudentActivity : AppCompatActivity() {
         val phoneEditText = findViewById<EditText>(R.id.phone_edit_text)
         val addressEditText = findViewById<EditText>(R.id.address_edit_text)
         val termsCheckBox = findViewById<CheckBox>(R.id.terms_checkbox)
-        val resetButton = findViewById<Button>(R.id.reset_button)
 
-        resetButton.setOnClickListener {
+        binding?.resetButton?.setOnClickListener {
             resetFields(nameEditText, idEditText, phoneEditText, addressEditText, termsCheckBox)
         }
 
-        val saveButton = findViewById<Button>(R.id.save_button)
-
-        saveButton.setOnClickListener {
+        binding?.saveButton?.setOnClickListener {
             saveStudent(nameEditText, idEditText, phoneEditText, addressEditText, termsCheckBox)
         }
     }
