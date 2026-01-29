@@ -48,7 +48,6 @@
     <string name="id_field">ID:</string>
     <string name="phone_field">Phone:</string>
     <string name="address_field">Address:</string>
-    <string name="checkbox_field">Checkbox</string>
     <string name="checked_field">Checked</string>
     <string name="student_image">Student Image</string>
     <string name="add_student_button">Add student button</string>
