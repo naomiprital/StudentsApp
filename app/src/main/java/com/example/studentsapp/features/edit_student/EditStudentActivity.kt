@@ -57,7 +57,9 @@ class EditStudentActivity: AppCompatActivity() {
             StudentModel.students.removeAt(position)
 
             dialog.dismiss()
-            Toast.makeText(this, "Student deleted successfully", Toast.LENGTH_SHORT).show()
+
+            val name = intent.getStringExtra("student_name") ?: "Student"
+            Toast.makeText(this, "$name deleted successfully", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, StudentListActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
