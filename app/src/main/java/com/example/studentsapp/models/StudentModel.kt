@@ -4,7 +4,7 @@ object StudentModel {
     val students = mutableListOf<Student>()
 
     init {
-        for (i in 1..50) {
+        for (i in 1..10) {
             val phoneNumber = "052-${i.toString().padStart(7, '0')}"
 
             students.add(

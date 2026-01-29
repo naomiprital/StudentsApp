@@ -1,97 +1,116 @@
 package com.example.studentsapp.features.add_student
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
-import androidx.activity.enableEdgeToEdge
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.studentsapp.databinding.ActivityAddStudentBinding
+import com.example.studentsapp.R
+import com.example.studentsapp.databinding.AddStudentBinding
+import com.example.studentsapp.features.students_list.StudentListActivity
 import com.example.studentsapp.models.Student
+import com.example.studentsapp.models.StudentModel
+import com.google.android.material.appbar.MaterialToolbar
+
 
 class AddStudentActivity : AppCompatActivity() {
-        private var binding: ActivityAddStudentBinding? = null
-        private val labels = listOf("Name", "Id", "Phone", "Address")
-        private val inputs = mutableMapOf<String, EditText>()
-        private val title = "New Students"
 
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            enableEdgeToEdge()
+    private var binding: AddStudentBinding? = null
+    private val title = "Add Student"
 
-            binding = ActivityAddStudentBinding.inflate(layoutInflater)
-            setContentView(binding?.root)
-            supportActionBar?.title = title
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-            setupView()
+        binding = AddStudentBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
 
-            ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-                val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-                v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-                insets
-            }
+        setUpToolBar()
+
+        val nameEditText = findViewById<EditText>(R.id.name_edit_text)
+        val idEditText = findViewById<EditText>(R.id.id_edit_text)
+        val phoneEditText = findViewById<EditText>(R.id.phone_edit_text)
+        val addressEditText = findViewById<EditText>(R.id.address_edit_text)
+        val termsCheckBox = findViewById<CheckBox>(R.id.terms_checkbox)
+        val resetButton = findViewById<Button>(R.id.reset_button)
+
+        resetButton.setOnClickListener {
+            resetFields(nameEditText, idEditText, phoneEditText, addressEditText, termsCheckBox)
         }
 
-        override fun onSupportNavigateUp(): Boolean {
-            onBackPressedDispatcher.onBackPressed()
-            return true
+        val saveButton = findViewById<Button>(R.id.save_button)
+
+        saveButton.setOnClickListener {
+            saveStudent(nameEditText, idEditText, phoneEditText, addressEditText, termsCheckBox)
         }
-
-        private fun setupView() {
-            val fieldsContainer = binding?.fieldsContainer
-            val inflater = layoutInflater
-
-            labels.forEach { label ->
-                val item = inflater.inflate(R.layout.form_item_field, fieldsContainer, false)
-                val labelView = item.findViewById<TextView>(R.id.field_label)
-                val inputView = item.findViewById<EditText>(R.id.field_input)
-
-                labelView.text = label
-                inputs[label] = inputView
-                fieldsContainer?.addView(item)
-            }
-
-            binding?.cancelButton?.setOnClickListener {
-                onBackPressedDispatcher.onBackPressed()
-            }
-
-            binding?.saveStudentButton?.setOnClickListener {
-                val data = labels.associateWith { label ->
-                    inputs[label]?.text?.toString().orEmpty().trim()
-                }
-
-                val isChecked = binding?.checkbox?.isChecked ?: false
-
-                if (data.values.all { it.isNotEmpty() }) {
-                    val student = Student(
-                        name = data.getValue("Name"),
-                        id = data.getValue("Id"),
-                        phone = data.getValue("Phone"),
-                        address = data.getValue("Address"),
-                        isChecked = isChecked
-                    )
-                    StudentsList.shared.students.add(student)
-
-                    inputs.values.forEach { it.text?.clear() }
-                    binding?.checkbox?.isChecked = false
-
-                    setResult(RESULT_OK)
-                    onBackPressedDispatcher.onBackPressed()
-                } else {
-                    var firstEmpty: EditText? = null
-                    labels.forEach { label ->
-                        val value = data[label].orEmpty()
-                        val input = inputs[label]
-                        if (value.isEmpty()) {
-                            input?.error = getString(R.string.error_required)
-                            if (firstEmpty == null) firstEmpty = input
-                        } else {
-                            input?.error = null
-                        }
-                    }
-                    firstEmpty?.requestFocus()
-                }
-            }
-
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return true
+    }
+    private fun setUpToolBar() {
+        val toolbar: MaterialToolbar = findViewById(R.id.main_toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = title
+    }
+
+    private fun resetFields(nameEditText: EditText, idEditText: EditText, phoneEditText: EditText,
+                            addressEditText: EditText, termsCheckBox: CheckBox) {
+        nameEditText.text.clear()
+        idEditText.text.clear()
+        phoneEditText.text.clear()
+        addressEditText.text.clear()
+
+        termsCheckBox.isChecked = false
+
+        nameEditText.requestFocus()
+    }
+
+    private fun saveStudent(nameEditText: EditText, idEditText: EditText, phoneEditText: EditText,
+                            addressEditText: EditText, termsCheckBox: CheckBox) {
+        val name = nameEditText.text.toString().trim()
+        val id = idEditText.text.toString().trim()
+        val phone = phoneEditText.text.toString().trim()
+        val address = addressEditText.text.toString().trim()
+
+        when {
+            name.isEmpty() -> {
+                nameEditText.error = "Name is required"
+                nameEditText.requestFocus()
+            }
+
+            id.isEmpty() -> {
+                idEditText.error = "ID is required"
+                idEditText.requestFocus()
+            }
+
+            phone.isEmpty() -> {
+                phoneEditText.error = "Phone is required"
+                phoneEditText.requestFocus()
+            }
+
+            address.isEmpty() -> {
+                addressEditText.error = "Address is required"
+                addressEditText.requestFocus()
+            }
+
+            else -> {
+                Toast.makeText(this, "Saving $name...", Toast.LENGTH_SHORT).show()
+
+                val intent = Intent(this, StudentListActivity::class.java)
+                val student = Student(
+                    name = name,
+                    id = id,
+                    phone = phone,
+                    address = address,
+                    isChecked = termsCheckBox.isChecked
+                )
+                StudentModel.students.add(student)
+                startActivity(intent)
+            }
+        }
+    }
+}
