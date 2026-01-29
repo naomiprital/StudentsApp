@@ -13,6 +13,9 @@ import com.example.studentsapp.models.StudentModel
 import com.google.android.material.appbar.MaterialToolbar
 
 class StudentDetailsActivity : AppCompatActivity() {
+
+    private var position: Int = -1
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +26,7 @@ class StudentDetailsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Student Details"
 
-        val position = intent.getIntExtra("student_pos", -1)
+        position = intent.getIntExtra("student_pos", -1)
 
         if (position != -1) {
             val student = StudentModel.students[position]
@@ -46,10 +49,27 @@ class StudentDetailsActivity : AppCompatActivity() {
                     putExtra("student_checkbox", student.isChecked)
                     putExtra("student_pos", position)
                 }
-
                 startActivity(intent)
-                finish()
             }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    override fun onResume() {
+        super.onResume()
+        if (position != -1 && position < StudentModel.students.size) {
+            val student = StudentModel.students[position]
+
+            findViewById<TextView>(R.id.name_input).text = student.name
+            findViewById<TextView>(R.id.id_input).text = student.id
+            findViewById<TextView>(R.id.phone_input).text = student.phone
+            findViewById<TextView>(R.id.address_input).text = student.address
+
+            val checkBox = findViewById<CheckBox>(R.id.details_check)
+            checkBox.isChecked = student.isChecked
+            checkBox.text = if (student.isChecked) "Checked" else "Not Checked"
+        } else {
+            finish()
         }
     }
 
