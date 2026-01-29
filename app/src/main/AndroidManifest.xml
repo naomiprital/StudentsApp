@@ -25,6 +25,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".features.add_student.AddStudentActivity"
+            android:exported="false"
+            android:label="Add Student" />
+
     </application>
 
 </manifest>
