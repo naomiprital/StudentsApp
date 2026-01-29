@@ -50,7 +50,6 @@ class EditStudentActivity: AppCompatActivity() {
         builder.setMessage("Are you sure you want to delete this student?")
 
         builder.setPositiveButton("Yes, Delete") { dialog, _ ->
-            // Put your actual deletion logic here
             val position = intent.getIntExtra("student_pos", -1)
             StudentModel.students.removeAt(position)
             dialog.dismiss()
