@@ -1,5 +1,6 @@
 package com.example.studentsapp.features.edit_student
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.studentsapp.R
 import com.example.studentsapp.databinding.EditStudentBinding
+import com.example.studentsapp.features.students_list.StudentListActivity
 import com.example.studentsapp.models.StudentModel
 import com.google.android.material.appbar.MaterialToolbar
 
@@ -51,10 +53,15 @@ class EditStudentActivity: AppCompatActivity() {
 
         builder.setPositiveButton("Yes, Delete") { dialog, _ ->
             val position = intent.getIntExtra("student_pos", -1)
+
             StudentModel.students.removeAt(position)
+
             dialog.dismiss()
-            Toast.makeText(this, "${intent.getStringExtra(
-                "student_name")} deleted successfully", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Student deleted successfully", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, StudentListActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+
             finish()
         }
 
