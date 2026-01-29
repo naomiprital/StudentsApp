@@ -30,6 +30,9 @@
             android:exported="false"
             android:label="Add Student" />
 
+        <activity android:name=".features.edit_student.EditStudentActivity"
+            android:label="Edit Student" />
+
     </application>
 
 </manifest>

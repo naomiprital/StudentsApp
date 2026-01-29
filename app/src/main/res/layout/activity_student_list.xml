@@ -23,7 +23,7 @@
         android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
+        android:alpha="0.85"
         app:backgroundTint="?attr/colorSecondaryContainer"
 
         app:srcCompat="@android:drawable/ic_input_add"
