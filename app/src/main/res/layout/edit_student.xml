@@ -3,86 +3,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar_main" />
+    <include
+        android:id="@+id/includedForm"
+        layout="@layout/activity_student_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center_horizontal">
-
-        <ImageView
-            android:id="@+id/details_image"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:contentDescription="@string/student_image"
-            android:scaleType="centerCrop"
-            android:src="@drawable/student_avatar"
-            android:layout_marginBottom="24dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="16dp">
-
-            <TextView
-                android:id="@+id/details_name_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:text="@string/name_field"
-                android:layout_marginBottom="8dp" />
-
-            <EditText
-                android:id="@+id/edit_name_input"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="textPersonName" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/details_id_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="@string/id_field"
-            android:layout_marginBottom="16dp" />
-
-
-
-        <TextView
-            android:id="@+id/details_phone_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="@string/id_field"
-            android:layout_marginBottom="16dp"  />
-
-        <TextView
-            android:id="@+id/details_address_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="@string/id_field"
-            android:layout_marginBottom="16dp"  />
-
-        <CheckBox
-            android:id="@+id/details_check"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/checked_field"
-            android:clickable="false" />
+        android:orientation="horizontal"
+        android:gravity="center_horizontal" >
 
         <Button
-            android:id="@+id/edit_button"
+            android:id="@+id/cancel_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/edit_student_button" />
+            android:backgroundTint="@color/button_bg"
+            android:text="@string/cancel"
+            android:layout_marginRight="30dp"/>
+
+        <Button
+            android:id="@+id/delete_student_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_student"
+            android:backgroundTint="@color/delete_red" />
+
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:layout_marginLeft="30dp"/>
 
     </LinearLayout>
 </LinearLayout>
